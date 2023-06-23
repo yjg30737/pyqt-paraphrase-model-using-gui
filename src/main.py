@@ -85,12 +85,12 @@ class MainWindow(QMainWindow):
         paramWidget = QWidget()
         paramWidget.setLayout(lay)
 
-        self.__descriptionLbl = LoadingLabel()
+        self.__loadingLbl = LoadingLabel()
 
         lay = QVBoxLayout()
         lay.addWidget(paramWidget)
         lay.addWidget(self.__submitBtn)
-        lay.addWidget(self.__descriptionLbl)
+        lay.addWidget(self.__loadingLbl)
         lay.addWidget(self.__answerBrowser)
 
         mainWidget = QWidget()
@@ -104,13 +104,13 @@ class MainWindow(QMainWindow):
         self.__t.start()
         self.__t.jobFinished.connect(self.__setAnswerBrowserText)
 
-        self.__descriptionLbl.start()
+        self.__loadingLbl.start()
         self.__submitBtn.setEnabled(False)
 
     def __setAnswerBrowserText(self, paraphrase_lst: list):
         self.__answerBrowser.setText('\n'.join(paraphrase_lst))
 
-        self.__descriptionLbl.stop()
+        self.__loadingLbl.stop()
         self.__submitBtn.setEnabled(True)
 
     def __removeModel(self):
