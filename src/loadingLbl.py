@@ -12,12 +12,12 @@ class LoadingLabel(QLabel):
         self.__default_text = 'Loading'
 
     def __initUi(self):
+        self.__timer = QTimer(self)
         self.setText(self.__default_text)
         self.setVisible(False)
         self.setAlignment(Qt.AlignVCenter | Qt.AlignCenter)
 
     def __timerInit(self):
-        self.__timer = QTimer(self)
         self.__timer.timeout.connect(self.__ticking)
         self.__timer.singleShot(0, self.__ticking)
         self.__timer.start(500)
